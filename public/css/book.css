@@ -12,8 +12,51 @@ main {
     font-family: 'Bilbo Swash Caps', cursive;
 }
 
+.alphabeticalNav{
+    position: fixed;
+    width: 100%;
+    top: 85px;
+    left: 0;
+}
+
+.alphabeticalNav ul{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+}
+
+.alphabeticalNav ul li{
+    background-color: grey;
+    width: calc(100% / 26);
+}
+
+.alphabeticalNav ul li a{
+    display: block;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.alphabeticalNav ul li a:visited{
+    color: black;
+}
+
 .whisky, .empty-whisky, .inkpen, .page {
     filter: drop-shadow(15px 15px 5px var(--shadow));
+}
+
+.desktop .inkpen{
+    display: none;
+}
+
+.desktop .whisky{
+    display: none;
+}
+
+.desktop .empty-whisky{
+    display: none;
 }
 
 .pages {
@@ -39,4 +82,63 @@ main {
     background: url('../image/paper.png'), linear-gradient(90deg, rgba(157,158,137,1) 0%, rgba(233,226,187,1) 5%, rgba(255,251,203,1) 18%);
     border-radius:  40% 24px 24px 40%/8px 8px 8px 8px;
     overflow: auto;
+}
+
+/* Media queries */
+@media screen and (min-width: 1200px){
+
+    .desktop .inkpen{
+        display: initial;
+        align-self: end;
+    }
+}
+
+@media screen and (min-width: 1100px){
+    /* TODO: Optimize query */
+    .desktop .whisky{
+        display: initial;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1100px){
+    .desktop .empty-whisky{
+        display: initial;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    .desktop{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (max-width:800px){
+    .alphabeticalNav{
+        width: initial;
+        height: 100vh;
+        top: 0;
+        left: initial;
+        right: 0;
+        z-index: 2;
+    }
+    
+    .alphabeticalNav ul{
+        flex-direction: column;
+    }
+
+    .alphabeticalNav ul li{
+        width: initial;
+        height: calc(100vh / 26);
+    }
+
+    .desktop .pages{
+        flex-direction: column-reverse;
+    }
+    .desktop .pages .page{
+        width: 85%;
+        margin: 0 auto;
+        height: 74vh;
+    }
 }
